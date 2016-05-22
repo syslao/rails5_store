@@ -43,6 +43,6 @@ class CartsControllerTest < ActionDispatch::IntegrationTest
       delete cart_url(@cart)
     end
 
-    assert_redirected_to carts_path
+    assert_redirected_to store_path
   end
 end
