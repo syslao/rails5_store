@@ -24,6 +24,10 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
+    product = Product.find(params[:product_id])
+    @line_item = @cart.line_items.build(product: product)
+
+
     @product = Product.new(product_params)
 
     respond_to do |format|
@@ -62,13 +66,13 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product
-      @product = Product.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product
+    @product = Product.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def product_params
-      params.require(:product).permit(:title, :description, :image_url, :price)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def product_params
+    params.require(:product).permit(:title, :description, :image_url, :price)
+  end
 end
